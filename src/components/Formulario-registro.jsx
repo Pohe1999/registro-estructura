@@ -18,7 +18,7 @@ const FormularioRegistro = () => {
     };
 
     try {
-      const response = await fetch("https://registro-afiliados.onrender.com/registro", {
+      const response = await fetch("https://registro-estructura.onrender.com/registro", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(datosNormalizados),
