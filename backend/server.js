@@ -21,7 +21,7 @@ const Usuario = mongoose.model("Usuario", UsuarioSchema);
 // Configurar el servidor
 const app = express();
 app.use(express.json()); 
-app.use(cors({ origin: "https://registro-interno.netlify.app" })); 
+app.use(cors({ origin: "https://registro-estructura.netlify.app" })); 
 
 // Ruta para registrar usuarios
 app.post("/registro", async (req, res) => {
