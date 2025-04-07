@@ -14,6 +14,7 @@ const UsuarioSchema = new mongoose.Schema({
   seccion: { type: String, required: true },
   curp: { type: String, required: true, unique: true },
   telefono: { type: String, required: true },
+  fechaRegistro: { type: Date, default: Date.now }, // <-- Campo agregado
 });
 
 const Usuario = mongoose.model("Usuario", UsuarioSchema);
