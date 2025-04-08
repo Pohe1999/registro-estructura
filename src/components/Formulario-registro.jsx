@@ -41,7 +41,7 @@ const FormularioRegistro = () => {
   return (
     <div className="max-w-md mx-auto mt-10 p-8 bg-zinc-100 text-zinc-900 shadow-xl rounded-2xl border border-zinc-200">
       <h2 className="text-2xl font-bold text-center mb-6 text-[#800020] tracking-wide">
-        Registro de Afiliación
+        Registro
       </h2>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
