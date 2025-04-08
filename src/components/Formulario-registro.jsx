@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
 const FormularioRegistro = () => {
@@ -10,7 +10,11 @@ const FormularioRegistro = () => {
     formState: { errors },
   } = useForm();
 
+  const [loading, setLoading] = useState(false);
+
   const onSubmit = async (data) => {
+    setLoading(true);
+
     const datosNormalizados = {
       seccion: data.seccion.trim(),
       curp: data.curp.toUpperCase().trim(),
@@ -35,6 +39,8 @@ const FormularioRegistro = () => {
     } catch (error) {
       console.error("Error al enviar:", error);
       alert("❌ Hubo un error al conectar con el servidor");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -103,12 +109,36 @@ const FormularioRegistro = () => {
           {errors.telefono && <p className="text-red-500 text-sm mt-1">{errors.telefono.message}</p>}
         </div>
 
-        {/* Botón */}
+        {/* Botón con Spinner */}
         <button
           type="submit"
-          className="w-full bg-[#800020] hover:bg-[#a0002a] text-white font-bold py-3 rounded-xl transition duration-300 shadow-md hover:shadow-lg"
+          disabled={loading}
+          className={`w-full bg-[#800020] hover:bg-[#a0002a] text-white font-bold py-3 rounded-xl transition duration-300 shadow-md hover:shadow-lg ${
+            loading ? "bg-[#800020] cursor-not-allowed" : "hover:bg-[#a0002a]"
+          }`}
         >
-          Enviar Registro
+          {loading ? (
+            <div className="flex items-center justify-center">
+              <svg className="animate-spin h-5 w-5 mr-2 text-white" viewBox="0 0 24 24">
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                ></circle>
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+                ></path>
+              </svg>
+              Enviando...
+            </div>
+          ) : (
+            "Enviar Registro"
+          )}
         </button>
       </form>
     </div>
